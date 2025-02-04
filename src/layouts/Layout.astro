@@ -1,6 +1,8 @@
 ---
 import "../styles/global.css";
 
+import { ClientRouter } from 'astro:transitions';
+
 import Footer from '@/sections/Footer.astro';
 import Header from '@/sections/Header.astro';
 
@@ -25,6 +27,7 @@ const { pageTitle, preloadImageUrls } = Astro.props;
 		{preloadImageUrls?.map((url) => (
 			<link rel="preload" as="image" href={url} />
 		))}
+		<ClientRouter />
 	</head>
 	<body class="h-[100vh] flex flex-col justify-stretch items-stretch">
 		<nav class="px-safe-screen flex flex-row justify-center">
