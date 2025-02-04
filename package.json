@@ -9,8 +9,13 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/svelte": "^7.0.4",
+    "@astrojs/vercel": "^8.0.5",
+    "@fontsource/lekton": "^5.0.8",
+    "@fontsource/reenie-beanie": "^5.0.18",
     "@tailwindcss/vite": "^4.0.3",
     "astro": "^5.2.5",
+    "notion-cms-adaptor": "^1.2.0",
     "tailwindcss": "^4.0.3"
   }
 }

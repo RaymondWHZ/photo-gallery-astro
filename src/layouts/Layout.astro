@@ -1,14 +1,47 @@
+---
+import "../styles/global.css";
+
+import Footer from '@/sections/Footer.astro';
+import Header from '@/sections/Header.astro';
+
+interface Props {
+	pageTitle?: string;
+	preloadImageUrls?: string[];
+}
+const { pageTitle, preloadImageUrls } = Astro.props;
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
-		<meta charset="UTF-8" />
+		<meta charset="utf-8" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link rel="manifest" href="/site.webmanifest">
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{pageTitle && `${pageTitle} | `} Raymond's Works</title>
+		{preloadImageUrls?.map((url) => (
+			<link rel="preload" as="image" href={url} />
+		))}
 	</head>
-	<body>
-		<slot />
+	<body class="h-[100vh] flex flex-col justify-stretch items-stretch">
+		<nav class="px-safe-screen flex flex-row justify-center">
+			<div class="w-full max-w-content">
+				<Header />
+			</div>
+		</nav>
+	
+		<main class="grow">
+			<slot />
+		</main>
+	
+		<footer class="px-safe-screen sm:px-10 lg:px-40 flex flex-row justify-center">
+			<div class="w-full max-w-content">
+				<Footer />
+			</div>
+		</footer>
 	</body>
 </html>
 

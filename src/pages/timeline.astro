@@ -1,0 +1,58 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { fetchAllWorksDateDesc, type Work } from '@/utils/cms';
+
+const monthDict: Record<string, string> = {
+	'01': 'January',
+	'02': 'February',
+	'03': 'March',
+	'04': 'April',
+	'05': 'May',
+	'06': 'June',
+	'07': 'July',
+	'08': 'August',
+	'09': 'September',
+	'10': 'October',
+	'11': 'November',
+	'12': 'December'
+}
+
+const works = await fetchAllWorksDateDesc();
+const monthYears: string[] = [];
+const timeline: Record<string, Work[]> = {};
+works.forEach((work) => {
+	const [year, month] = work.date.split('-');
+	const monthYear = `${monthDict[month]} ${year}`;
+	if (timeline[monthYear]) {
+		timeline[monthYear].push(work);
+	} else {
+		monthYears.push(monthYear);
+		timeline[monthYear] = [work];
+	}
+});
+
+---
+
+<Layout pageTitle="Timeline" preloadImageUrls={works.map((work) => work.image + "&width=200")}>
+	<div class="h-full w-full px-safe-screen flex flex-row items-stretch justify-center py-8 lg:py-20">
+		<div class="h-full grow max-w-content flex flex-col items-stretch justify-start">
+			{monthYears.map((monthYear) => (
+				<div class="w-full border-b border-gray-200 pb-4">
+					<h1 class="text-2xl">{monthYear}</h1>
+				</div>
+				<div class="w-full flex flex-row flex-wrap gap-x-8 gap-y-2 pt-4 pb-8">
+					{timeline[monthYear].map((work) => (
+						<div>
+							<span class="text-sm text-gray-500">{work.date.split('-')[2]}</span>
+							<div class="overflow-clip">
+								<a href={"/" + work.id} class="focus:blur-lg transition duration-100">
+									<img class="max-h-[250px]" src={work.image + "&width=" + (work.display === "top" ? "2000" : "1000")} alt={work.title} />
+								</a>
+							</div>
+						</div>
+					))}
+				</div>
+			))}
+		</div>
+	</div>
+</Layout>
