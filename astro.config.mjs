@@ -16,6 +16,7 @@ export default defineConfig({
 	},
 	// Prefetching
 	prefetch: {
+		prefetchAll: true,
 		defaultStrategy: 'viewport'
 	},
 	// Tailwind CSS
