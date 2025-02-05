@@ -10,8 +10,8 @@
 	let index = 0;
 
 	let innerWidth: number;
-	let pageX = 0;
-	let pageY = 0;
+	let mouseX = 0;
+	let mouseY = 0;
 
 	let touchScreen = false;
 	onMount(() => {
@@ -22,7 +22,7 @@
 
 	$: hasNext = index < feed.length - 1;
 	$: hasPrev = index > 0;
-	$: mouseInNext = pageX > innerWidth / 2;
+	$: mouseInRightHalf = mouseX > innerWidth / 2;
 
 	let mouseIn = false;
 
@@ -31,19 +31,9 @@
 
 <svelte:window
 	bind:innerWidth
-	on:mouseover={e => ({ pageX, pageY } = e)}
-	on:mousemove={e => ({ pageX, pageY } = e)}
-	on:mousedown={() => mouseDownTime = Date.now()}
-	on:mouseup={() => {
-		if (!mouseIn || Date.now() - mouseDownTime > 200) return;
-		if (mode === 'feed') {
-			if (mouseInNext && hasNext) index++;
-			if (!mouseInNext && hasPrev) index--;
-		}
-		if (mode === 'single') {
-			history.back();
-		}
-	}}
+	on:mouseover={e => ({ pageX: mouseX, pageY: mouseY } = e)}
+	on:mousemove={e => ({ pageX: mouseX, pageY: mouseY } = e)}
+	on:mousedown={e => ({ pageX: mouseX, pageY: mouseY } = e)}
 	on:keyup={(e) => {
 		if (e.key === 'ArrowRight' && index < feed.length - 1) index++;
 		if (e.key === 'ArrowLeft' && index > 0) index--;
@@ -57,11 +47,25 @@
 		<link rel="preload" as="image" href={feed[index + 1].image} />
 	{/if}
 </svelte:head>
+<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 <div
 	class="h-full w-full flex flex-col items-center px-safe-screen"
 	role="application"
-	on:mouseenter={() => mouseIn = true}
+	on:focus={() => {}}
+	on:mouseover={() => mouseIn = true}
+	on:mousemove={() => mouseIn = true}
 	on:mouseleave={() => mouseIn = false}
+	on:mousedown={() => mouseDownTime = Date.now()}
+	on:mouseup={() => {
+		if (Date.now() - mouseDownTime > 200) return;
+		if (mode === 'feed') {
+			if (mouseInRightHalf && hasNext) index++;
+			if (!mouseInRightHalf && hasPrev) index--;
+		}
+		if (mode === 'single') {
+			history.back();
+		}
+	}}
 >
 	{#if touchScreen}
 		<div class="w-full flex flex-col items-start gap-1 max-w-content mb-8">
@@ -102,24 +106,24 @@
 			{/if}
 		</div>
 	{/if}
-	<div class="h-full w-full max-w-content">
+	<div class="h-full w-full max-w-content bg-white">
 		<WorkView {statusDescription} work={feed[index]} />
 	</div>
 </div>
 {#if !touchScreen && mouseIn}
 	{#if mode === 'feed'}
-		{#if mouseInNext}
+		{#if mouseInRightHalf}
 			{#if hasNext}
 				<h1
 					class="bg-black text-white text-xs p-1"
-					style="position: absolute; top: {pageY + 10}px; left: {pageX + 10}px"
+					style="position: absolute; top: {mouseY + 10}px; left: {mouseX + 10}px"
 				>
 					CLICK HERE TO VIEW NEXT →
 				</h1>
 			{:else}
 				<h1
 					class="bg-black text-white text-xs p-1 opacity-40"
-					style="position: absolute; top: {pageY + 10}px; left: {pageX + 10}px"
+					style="position: absolute; top: {mouseY + 10}px; left: {mouseX + 10}px"
 				>
 					YOU'VE REACHED THE END!
 				</h1>
@@ -128,14 +132,14 @@
 			{#if hasPrev}
 				<h1
 					class="bg-black text-white text-xs p-1"
-					style="position: absolute; top: {pageY + 10}px; left: {pageX + 10}px"
+					style="position: absolute; top: {mouseY + 10}px; left: {mouseX + 10}px"
 				>
 					CLICK HERE TO VIEW PREVIOUS ←
 				</h1>
 			{:else}
 				<h1
 					class="bg-black text-white text-xs p-1 opacity-40"
-					style="position: absolute; top: {pageY + 10}px; left: {pageX + 10}px"
+					style="position: absolute; top: {mouseY + 10}px; left: {mouseX + 10}px"
 				>
 					NO PREVIOUS; CLICK RIGHT HALF TO VIEW NEXT
 				</h1>
@@ -145,7 +149,7 @@
 	{#if history.length > 1 && mode === 'single'}
 		<h1
 			class="bg-black text-white text-xs p-1"
-			style="position: absolute; top: {pageY + 10}px; left: {pageX + 10}px"
+			style="position: absolute; top: {mouseY + 10}px; left: {mouseX + 10}px"
 		>
 			CLICK ANYWHERE TO RETURN
 		</h1>
