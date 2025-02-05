@@ -1,6 +1,6 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import ImageLink from '@/components/ImageLink.svelte';
+import SmartImageSeries from '@/components/SmartImageSeries.svelte';
 import { fetchAllWorksDateDesc, type Work } from '@/utils/cms';
 
 const monthDict: Record<string, string> = {
@@ -51,7 +51,11 @@ works.forEach((work) => {
 							"min-[480px]:w-[300px]")
 						}>
 							<span class="text-sm text-gray-500">{work.date.split('-')[2]}</span>
-							<ImageLink {work} client:load />
+							<div class="overflow-clip">
+								<a href={"/" + work.id} class="transition duration-100 focus:blur-lg">
+									<SmartImageSeries image={work.image} fullWidth={1000} forceDelayLoading={false} client:load />
+								</a>
+							</div>
 						</div>
 					))}
 				</div>
