@@ -3,30 +3,31 @@
 	import type { Work } from '@/utils/cms';
 	import { onMount } from 'svelte';
 
-	export let statusDescription: string;
-	export let feed: Work[];
-	export let mode: 'feed' | 'single' = 'feed';
+	const { statusDescription = "", feed, mode = "feed" } = $props<{
+		statusDescription?: string;
+		feed: Work[];
+		mode?: 'feed' | 'single';
+	}>();
 
-	let index = 0;
+	let index = $state(0);
 
-	let innerWidth: number;
-	let mouseX = 0;
-	let mouseY = 0;
+	let innerWidth = $state(0);
+	let mouseX = $state(0);
+	let mouseY = $state(0);
+	let mouseIn = $state(false);
 
-	let touchScreen = false;
+	let touchScreen = $state(false);
 	onMount(() => {
 		if ('ontouchstart' in window) {
 			touchScreen = true;
 		}
 	});
 
-	$: hasNext = index < feed.length - 1;
-	$: hasPrev = index > 0;
-	$: mouseInRightHalf = mouseX > innerWidth / 2;
+	const hasNext = $derived(index < feed.length - 1);
+	const hasPrev = $derived(index > 0);
+	const mouseInRightHalf = $derived(mouseX > innerWidth / 2);
 
-	let mouseIn = false;
-
-	let mouseDownTime: number;
+	let mouseDownTime: number;  // pure bookkeeping, nonreactive
 </script>
 
 <svelte:window
@@ -51,12 +52,12 @@
 <div
 	class="h-full w-full flex flex-col items-center px-safe-screen"
 	role="application"
-	on:focus={() => {}}
-	on:mouseover={() => mouseIn = true}
-	on:mousemove={() => mouseIn = true}
-	on:mouseleave={() => mouseIn = false}
-	on:mousedown={() => mouseDownTime = Date.now()}
-	on:mouseup={() => {
+	onfocus={() => {}}
+	onmouseover={() => mouseIn = true}
+	onmousemove={() => mouseIn = true}
+	onmouseleave={() => mouseIn = false}
+	onmousedown={() => mouseDownTime = Date.now()}
+	onmouseup={() => {
 		if (Date.now() - mouseDownTime > 200) return;
 		if (mode === 'feed') {
 			if (mouseInRightHalf && hasNext) index++;

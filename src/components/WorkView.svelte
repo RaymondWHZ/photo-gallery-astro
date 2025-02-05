@@ -4,8 +4,10 @@
 	import DescSection from "@/components/DescSection.svelte";
 	import SmartImageSeries from './SmartImageSeries.svelte';
 
-	export let statusDescription: string;
-	export let work: Work;
+	const { statusDescription = "", work } = $props<{
+		statusDescription?: string;
+		work: Work;
+	}>();
 </script>
 
 {#key work.id}

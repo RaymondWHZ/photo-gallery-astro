@@ -1,20 +1,20 @@
 <script lang="ts">
-  	import { onDestroy, onMount } from "svelte";
+  	import { onMount } from "svelte";
 	import type { Action } from "svelte/action";
 
-	export let additionalClasses: string = "";
-	export let image: string;
-	export let fullWidth: number | undefined = undefined;
+	const { additionalClasses = "", image, fullWidth } = $props<{
+		additionalClasses?: string;
+		image: string;
+		fullWidth?: number
+	}>();
 
-	$: fullSrc = fullWidth ? image + `&width=${fullWidth}` : image;
+	const fullSrc = $derived(fullWidth ? image + `&width=${fullWidth}` : image);
 
-	let imageSrc = "";
+	let imageSrc = $state("");
 	let imageDiv: HTMLDivElement;
 
-	let observer: IntersectionObserver;
-
 	onMount(() => {
-		observer = new IntersectionObserver((entries) => {
+		let observer = new IntersectionObserver((entries) => {
 			entries.forEach((entry) => {
 				if (entry.isIntersecting) {
 					setTimeout(() => {
@@ -25,13 +25,12 @@
 			});
 		});
 		observer.observe(imageDiv);
+		return () => {
+			observer.disconnect();
+		};
 	});
 
-	onDestroy(() => {
-		observer?.disconnect();
-	});
-
-	let loaded = false;
+	let loaded = $state(false);
 
 	const onload: Action<HTMLImageElement> = (el) => {
 		el.addEventListener('load', () => {

@@ -1,11 +1,10 @@
 <script lang="ts">
-    export let work: {
-        date: string;
-        locationName: string;
-        deviceName: string;
-        lensName: string;
-    };
-    export let width: string | undefined = undefined;
+    import type { Work } from "@/utils/cms";
+
+    const { work, width } = $props<{
+        work: Work;
+        width?: string;
+    }>();
 </script>
 
 <p class="text-xs font-light italic text-gray-500" style={width ? `width: ${width}px` : ''}>

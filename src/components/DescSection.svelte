@@ -1,14 +1,12 @@
 <script lang="ts">
-    export let work: {
-        title: string;
-        shutter: string;
-        aperture: string;
-        iso: string;
-        description: string;
-    };
-    export let statusDescription: string = '';
-    export let wide = false;
-    export let width: string | undefined = undefined;
+    import type { Work } from "@/utils/cms";
+
+    const { work, statusDescription = "", wide = false, width } = $props<{
+        work: Work;
+        statusDescription?: string;
+        wide?: boolean;
+        width?: string;
+    }>();
 </script>
 
 {#if statusDescription}
