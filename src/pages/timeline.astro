@@ -1,5 +1,6 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import ImageLink from '@/components/ImageLink.svelte';
 import { fetchAllWorksDateDesc, type Work } from '@/utils/cms';
 
 const monthDict: Record<string, string> = {
@@ -42,13 +43,15 @@ works.forEach((work) => {
 				</div>
 				<div class="w-full flex flex-row flex-wrap gap-x-8 gap-y-2 pt-4 pb-8">
 					{timeline[monthYear].map((work) => (
-						<div>
+						<div class={
+							"w-full " +
+							(work.display === "middle" ? "min-[480px]:w-[200px]" :
+							work.display === "top" ? "min-[480px]:w-[400px]" :
+							work.display === "left" ? "min-[480px]:w-[300px]" :
+							"min-[480px]:w-[300px]")
+						}>
 							<span class="text-sm text-gray-500">{work.date.split('-')[2]}</span>
-							<div class="overflow-clip">
-								<a href={"/" + work.id} class="focus:blur-lg transition duration-100">
-									<img class="max-h-[250px]" src={work.image + "&width=" + (work.display === "top" ? "2000" : "1000")} alt={work.title} />
-								</a>
-							</div>
+							<ImageLink {work} client:load />
 						</div>
 					))}
 				</div>

@@ -3,6 +3,7 @@
 
 	export let additionalClasses: string = "";
 	export let image: string;
+	export let fullWidth: number | undefined = undefined;
 
 	let loadedLevel = 0;
 
@@ -13,7 +14,11 @@
 			}
         });
 		setTimeout(() => {
-			el.src = image;
+			if (fullWidth) {
+				el.src = image + `&width=${fullWidth}`;
+			} else {
+				el.src = image;
+			}
 		}, 50);
     }
 </script>
