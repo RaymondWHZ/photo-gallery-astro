@@ -26,6 +26,7 @@ const { pageTitle, preloadImageUrls, metaDescription } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{pageTitle && `${pageTitle} | `} Raymond's Works</title>
 		<meta name="description" content={metaDescription} />
+		<link rel="preload" as="font" href="/fonts/Avenir Next LT Pro Regular.otf" type="font/otf" />
 		{preloadImageUrls?.map((url) => (
 			<link rel="preload" as="image" href={url} />
 		))}

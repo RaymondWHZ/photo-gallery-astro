@@ -8,6 +8,7 @@
     font-style: normal;
     font-weight: 400;
     src: url('/fonts/Avenir Next LT Pro Regular.otf');
+    font-display: swap;
 }
 
 /* Tailwind CSS */
