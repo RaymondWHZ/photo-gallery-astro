@@ -1,6 +1,11 @@
 ---
 import "../styles/global.css";
 
+import '@fontsource/lekton';
+import '@fontsource/reenie-beanie';
+import lektonWoff2 from '@fontsource/lekton/files/lekton-latin-400-normal.woff2?url';
+import reenieBeanieWoff2 from '@fontsource/reenie-beanie/files/reenie-beanie-latin-400-normal.woff2?url';
+
 import { ClientRouter } from 'astro:transitions';
 
 import Footer from '@/sections/Footer.astro';
@@ -18,18 +23,30 @@ const { pageTitle, preloadImageUrls, metaDescription } = Astro.props;
 <html lang="en" transition:animate="none">
 	<head>
 		<meta charset="utf-8" />
+
+		<!-- Favicon -->
 		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 		<link rel="manifest" href="/site.webmanifest">
+
+		<!-- Meta -->
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
+
+		<!-- SEO -->
 		<title>{pageTitle && `${pageTitle} | `} Raymond's Works</title>
 		<meta name="description" content={metaDescription} />
+
+		<!-- Preload -->
 		<link rel="preload" as="font" href="/fonts/Avenir Next LT Pro Regular.otf" type="font/otf" />
+		<link rel="preload" as="font" href={lektonWoff2} type="font/woff2" />
+		<link rel="preload" as="font" href={reenieBeanieWoff2} type="font/woff2" />
 		{preloadImageUrls?.map((url) => (
 			<link rel="preload" as="image" href={url} />
 		))}
+
+		<!-- Astro Client Router -->
 		<ClientRouter />
 	</head>
 	<body class="h-[100vh] flex flex-col justify-stretch items-stretch">
