@@ -14,7 +14,7 @@ if (!work) {
 }
 ---
 
-<Layout pageTitle={work.title}>
+<Layout pageTitle={work.title} metaDescription={work.description}>
 	<div class="h-full w-screen">
 		<FeedView statusDescription="" feed={[work]} mode="single" client:load />
 	</div>

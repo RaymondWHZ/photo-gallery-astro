@@ -34,7 +34,7 @@ works.forEach((work) => {
 
 ---
 
-<Layout pageTitle="Timeline" preloadImageUrls={works.map((work) => work.image + "&width=200")}>
+<Layout pageTitle="Timeline" metaDescription="Browse Raymond's works in the order of time taken." preloadImageUrls={works.map((work) => work.image + "&width=200")}>
 	<div class="h-full w-full px-safe-screen flex flex-row items-stretch justify-center py-8 lg:py-20">
 		<div class="h-full grow max-w-content flex flex-col items-stretch justify-start">
 			{monthYears.map((monthYear) => (

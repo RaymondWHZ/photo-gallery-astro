@@ -8,9 +8,10 @@ import Header from '@/sections/Header.astro';
 
 interface Props {
 	pageTitle?: string;
+	metaDescription?: string;
 	preloadImageUrls?: string[];
 }
-const { pageTitle, preloadImageUrls } = Astro.props;
+const { pageTitle, preloadImageUrls, metaDescription } = Astro.props;
 ---
 
 <!doctype html>
@@ -24,6 +25,7 @@ const { pageTitle, preloadImageUrls } = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{pageTitle && `${pageTitle} | `} Raymond's Works</title>
+		<meta name="description" content={metaDescription} />
 		{preloadImageUrls?.map((url) => (
 			<link rel="preload" as="image" href={url} />
 		))}
