@@ -52,8 +52,8 @@ works.forEach((work) => {
 						}>
 							<span class="text-sm text-gray-500">{work.date.split('-')[2]}</span>
 							<div class="overflow-clip">
-								<a href={"/" + work.id} class="transition duration-100 focus:blur-lg">
-									<SmartImageSeries image={work.image} fullWidth={1000} client:load />
+								<a href={"/" + work.id} class="focus:blur-sm">
+									<SmartImageSeries image={work.image} fullWidth={1000} forceDelay={false} client:load />
 								</a>
 							</div>
 						</div>
