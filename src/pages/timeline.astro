@@ -54,11 +54,7 @@ works.forEach((work) => {
 								<a href={"/" + work.id} class="focus:blur-sm">
 									<SmartImageSeries
 										image={work.image}
-										fullWidth={
-											work.display === "middle" ? 400 :
-											work.display === "top" ? 800 :
-											600
-										}
+										fullWidth={800}
 										forceDelay={false}
 										client:load
 									/>
