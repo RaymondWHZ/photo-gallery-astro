@@ -47,13 +47,21 @@ works.forEach((work) => {
 							"w-full " +
 							(work.display === "middle" ? "min-[480px]:w-[200px]" :
 							work.display === "top" ? "min-[480px]:w-[400px]" :
-							work.display === "left" ? "min-[480px]:w-[300px]" :
 							"min-[480px]:w-[300px]")
 						}>
 							<span class="text-sm text-gray-500">{work.date.split('-')[2]}</span>
 							<div class="overflow-clip">
 								<a href={"/" + work.id} class="focus:blur-sm">
-									<SmartImageSeries image={work.image} fullWidth={1000} forceDelay={false} client:load />
+									<SmartImageSeries
+										image={work.image}
+										fullWidth={
+											work.display === "middle" ? 400 :
+											work.display === "top" ? 800 :
+											600
+										}
+										forceDelay={false}
+										client:load
+									/>
 								</a>
 							</div>
 						</div>
