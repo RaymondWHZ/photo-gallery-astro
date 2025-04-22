@@ -131,7 +131,7 @@
 			class="bg-black text-white text-xs p-1"
 			style="position: absolute; top: {mouseY + 10}px; left: {mouseX + 10}px"
 		>
-			CLICK IMAGE TO VIEW LARGE「」
+			CLICK TO VIEW LARGE IMAGE「」
 		</h1>
 	{:else}
 		{#if mode === 'feed'}
@@ -174,7 +174,7 @@
 				class="bg-black text-white text-xs p-1"
 				style="position: absolute; top: {mouseY + 10}px; left: {mouseX + 10}px"
 			>
-				CLICK ANYWHERE TO RETURN ↵
+				CLICK HERE TO RETURN ↵
 			</h1>
 		{/if}
 	{/if}
