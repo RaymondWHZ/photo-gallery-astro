@@ -43,7 +43,7 @@
 </script>
 
 <!-- svelte-ignore a11y_no_static_element_interactions -->
-<div class={"overflow-clip relative cursor-pointer hover:opacity-80 " + additionalClasses} {onmouseenter} {onmouseleave}>
+<div class={"overflow-clip relative cursor-pointer " + additionalClasses} {onmouseenter} {onmouseleave}>
 	<img src={image + "&width=200"} alt="" class={"w-full blur-sm" + (loaded ? " opacity-0" : "")} />
 	<div class="absolute inset-0">
 		<img use:onload src={imageSrc} alt="" class={"w-full" + (loaded ? "" : " opacity-0")} loading="lazy" />
