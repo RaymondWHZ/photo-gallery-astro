@@ -9,13 +9,13 @@ const href = Astro.url.pathname;
 
 	<div class="flex-grow"></div>
 
-	<a href="/timeline" class={`text-sm ${href === '/timeline' ? 'font-bold underline' : ''}`}>
-		Timeline
+	<a href="/collections" class={`text-sm hover:underline ${href === '/collections' ? 'font-bold underline' : ''}`}>
+		Collections
 	</a>
 
 	<div class="border border-black text-sm h-[1.4em]"></div>
 
-	<a href="/about" class={`text-sm ${href === '/about' ? 'font-bold underline' : ''}`}>
+	<a href="/about" class={`text-sm hover:underline ${href === '/about' ? 'font-bold underline' : ''}`}>
 		About
 	</a>
 </header>

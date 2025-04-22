@@ -1,0 +1,44 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import SmartImageSeries from '@/components/SmartImageSeries.svelte';
+import { fetchCollections } from "@/utils/cms";
+import ThumbnailGrid from "@/components/ThumbnailGrid.astro";
+
+const collections = await fetchCollections();
+const works = collections.flatMap(
+	(collection) => collection.works
+		.concat(collection.subCollections?.flatMap((subCollection) => subCollection.works) ?? [])
+);
+---
+
+<Layout pageTitle="Collections" metaDescription="Browse Raymond's works in collections." preloadImageUrls={works.map((work) => work.image + "&width=200")}>
+	<div class="h-full w-full px-safe-screen flex flex-row items-stretch justify-center py-8 lg:py-20">
+		<div class="h-full grow max-w-content flex flex-col items-stretch justify-start">
+			<div class="mb-16 border-b border-gray-200" />
+			{collections.map((collection, index) => (
+				<span class="text-xs font-light text-gray-500 mb-1">#{collections.length - index}</span>
+				<div class="w-full mb-4 flex flex-row items-baseline gap-2">
+					<h1 class="text-3xl">{collection.title}</h1>
+					<span class="text-xs font-light text-gray-500">
+						{collection.dates.start}
+						{collection.dates.end && ` - ${collection.dates.end}`}
+						{collection.status === 'in-progress' && " - Now"}
+					</span>
+				</div>
+				<p class="text-xs font-light text-gray-500 w-full sm:w-[500px] mb-12">{collection.description}</p>
+				<ThumbnailGrid works={collection.works} />
+				<>
+					{collection.subCollections?.map(subCollection => (
+						<div class="w-full mb-4 flex flex-row items-baseline gap-2">
+							<h1 class="text-2xl">{subCollection.title}</h1>
+							<span class="text-xs font-light text-gray-500">{subCollection.dates.start}{subCollection.dates.end && ` - ${subCollection.dates.end}`}</span>
+						</div>
+						<ThumbnailGrid works={subCollection.works} />
+						<div class="mb-12" />
+					))}
+				</>
+				<div class="mt-16 mb-16 border-b border-gray-200" />
+			))}
+		</div>
+	</div>
+</Layout>

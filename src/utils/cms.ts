@@ -4,16 +4,12 @@ import {
 	createNotionDBClient,
 	date, type DBObjectTypesInfer,
 	files,
+	packPlainText,
 	rich_text, rollup,
 	select,
 	title,
 	unique_id
 } from "notion-cms-adaptor";
-import type {RichTextItemResponse} from "@notionhq/client/build/src/api-endpoints";
-
-function packPlainText(arr: RichTextItemResponse[]): string {
-	return arr.reduce((acc, cur) => acc + cur.plain_text, '');
-}
 
 const rollupSingleTitle = rollup().handleSingleUsing((value): string => {
 	if (value && value.type === 'title') {
@@ -40,6 +36,44 @@ const dbSchemas = createDBSchemas({
 		locationName: rollupSingleTitle,
 		deviceName: rollupSingleTitle,
 		lensName: rollupSingleTitle
+	},
+	works__thumbnail: {
+		id: unique_id().number(),
+		image: files().singleNotionImageUrl(),
+		display: select().stringEnum('left', 'right', 'top', 'middle', undefined),
+	},
+	collections: {
+		id: unique_id().number(),
+		title: title().plainText(),
+		description: rich_text().plainText(),
+		dates: date().dateRange(),
+		status: select().stringEnum('in-progress', undefined),
+		work_ids: rollup().handleArrayUsing(values => {
+			return values
+				.map(value => {
+					if (value.type === 'unique_id') {
+						return value.unique_id.number ?? undefined;
+					}
+					return undefined;
+				})
+				.filter(value => value !== undefined);
+		}),
+		parent_id: rollup().handleSingleUsing(value => {
+			if (value && value.type === 'unique_id') {
+				return value.unique_id.number ?? undefined;
+			}
+			return undefined;
+		}),
+		sub_item_ids: rollup().handleArrayUsing(values => {
+			return values
+				.map(value => {
+					if (value.type === 'unique_id') {
+						return value.unique_id.number ?? undefined;
+					}
+					return undefined;
+				})
+				.filter(value => value !== undefined);
+		}),
 	}
 })
 
@@ -51,8 +85,14 @@ const client = createNotionDBClient({
 
 export type ObjectTypes = DBObjectTypesInfer<typeof dbSchemas>;
 export type Work = ObjectTypes['works'];
+export type WorkThumbnail = ObjectTypes['works__thumbnail'];
+export type RawCollection = ObjectTypes['collections'];
+export type Collection = RawCollection & {
+	works: WorkThumbnail[];
+	subCollections?: Collection[];
+}
 
-export async function fetchAllWorksDateDesc(): Promise<Work[]> {
+export async function fetchAllWorks(): Promise<Work[]> {
 	return await client.query('works', {
 		filter: {
 			property: 'status',
@@ -60,13 +100,54 @@ export async function fetchAllWorksDateDesc(): Promise<Work[]> {
 				does_not_equal: 'hidden'
 			}
 		},
-		sorts: [
-			{
-				property: 'date',
-				direction: 'descending'
-			}
-		]
 	})
+}
+
+export async function fetchCollections(): Promise<Collection[]> {
+	const [collections, works] = (await Promise.all([
+		client.query('collections', {
+			filter: {
+				property: 'status',
+				select: {
+					does_not_equal: 'hidden'
+				}
+			},
+			sorts: [
+				{
+					property: 'dates',
+					direction: 'descending'
+				}
+			]
+		}),
+		client.query('works__thumbnail')
+	])) as [Collection[], WorkThumbnail[]];
+
+	// Collect works by their IDs
+	const workMap = new Map<number, WorkThumbnail>();
+	works.forEach(work => {
+		workMap.set(work.id, work);
+	});
+	collections.forEach(collection => {
+		collection.works = collection.work_ids
+			.map(id => workMap.get(id))
+			.filter((work): work is WorkThumbnail => work !== undefined);
+	});
+
+	// Collect sub-collections, supports only 2 levels
+	const collectionMap = new Map<number, Collection>();
+	collections
+		.filter(collection => !!collection.parent_id)
+		.forEach(collection => {
+			collectionMap.set(collection.id, collection);
+		});
+	const topLevelCollections = collections.filter(collection => !collection.parent_id)
+	topLevelCollections.forEach(collection => {
+		collection.subCollections = collection.sub_item_ids
+			.map(id => collectionMap.get(id))
+			.filter((collection): collection is Collection => collection !== undefined);
+	});
+
+	return topLevelCollections;
 }
 
 export async function fetchSingleWork(id: number): Promise<Work | undefined> {
