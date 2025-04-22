@@ -16,6 +16,8 @@
 	let mouseY = $state(0);
 	let mouseIn = $state(false);
 
+	let mouseOnImage = $state(false);
+
 	let touchScreen = $state(false);
 	onMount(() => {
 		if ('ontouchstart' in window) {
@@ -60,17 +62,23 @@
 	onmousedown={() => mouseDownTime = Date.now()}
 	onmouseup={() => {
 		if (Date.now() - mouseDownTime > 200) return;
-		if (mode === 'feed') {
+		if (mouseOnImage) {
+			window.open(feed[index].image, '_blank');
+		} else if (mode === 'feed') {
 			if (mouseInRightHalf && hasNext) index++;
 			if (!mouseInRightHalf && hasPrev) index--;
-		}
-		if (mode === 'single') {
+		} else if (mode === 'single') {
 			history.back();
 		}
 	}}
 >
 	{#if touchScreen}
 		<div class="w-full flex flex-col items-start gap-1 max-w-content mb-8">
+			<h1
+				class="bg-black text-white text-xs p-1"
+			>
+				CLICK IMAGE TO VIEW LARGE「」
+			</h1>
 			{#if mode === 'feed'}
 				{#if hasNext}
 					<h1
@@ -103,57 +111,71 @@
 				<h1
 					class="bg-black text-white text-xs p-1"
 				>
-					CLICK ANYWHERE TO RETURN
+					CLICK ANYWHERE ELSE TO RETURN ↵
 				</h1>
 			{/if}
 		</div>
 	{/if}
 	<div class="h-full w-full max-w-content bg-white">
-		<WorkView {statusDescription} work={feed[index]} />
+		<WorkView
+			{statusDescription}
+			work={feed[index]}
+			onmouseenterimage={() => mouseOnImage = true}
+			onmouseleaveimage={() => mouseOnImage = false}
+		/>
 	</div>
 </div>
 {#if !touchScreen && mouseIn}
-	{#if mode === 'feed'}
-		{#if mouseInRightHalf}
-			{#if hasNext}
-				<h1
-					class="bg-black text-white text-xs p-1"
-					style="position: absolute; top: {mouseY + 10}px; left: {mouseX + 10}px"
-				>
-					CLICK HERE TO VIEW NEXT →
-				</h1>
-			{:else}
-				<h1
-					class="bg-black text-white text-xs p-1 opacity-40"
-					style="position: absolute; top: {mouseY + 10}px; left: {mouseX + 10}px"
-				>
-					YOU'VE REACHED THE END!
-				</h1>
-			{/if}
-		{:else}
-			{#if hasPrev}
-				<h1
-					class="bg-black text-white text-xs p-1"
-					style="position: absolute; top: {mouseY + 10}px; left: {mouseX + 10}px"
-				>
-					CLICK HERE TO VIEW PREVIOUS ←
-				</h1>
-			{:else}
-				<h1
-					class="bg-black text-white text-xs p-1 opacity-40"
-					style="position: absolute; top: {mouseY + 10}px; left: {mouseX + 10}px"
-				>
-					NO PREVIOUS; CLICK RIGHT HALF TO VIEW NEXT
-				</h1>
-			{/if}
-		{/if}
-	{/if}
-	{#if history.length > 1 && mode === 'single'}
+	{#if mouseOnImage}
 		<h1
 			class="bg-black text-white text-xs p-1"
 			style="position: absolute; top: {mouseY + 10}px; left: {mouseX + 10}px"
 		>
-			CLICK ANYWHERE TO RETURN
+			CLICK IMAGE TO VIEW LARGE「」
 		</h1>
+	{:else}
+		{#if mode === 'feed'}
+			{#if mouseInRightHalf}
+				{#if hasNext}
+					<h1
+						class="bg-black text-white text-xs p-1"
+						style="position: absolute; top: {mouseY + 10}px; left: {mouseX + 10}px"
+					>
+						CLICK HERE TO VIEW NEXT →
+					</h1>
+				{:else}
+					<h1
+						class="bg-black text-white text-xs p-1 opacity-40"
+						style="position: absolute; top: {mouseY + 10}px; left: {mouseX + 10}px"
+					>
+						YOU'VE REACHED THE END!
+					</h1>
+				{/if}
+			{:else}
+				{#if hasPrev}
+					<h1
+						class="bg-black text-white text-xs p-1"
+						style="position: absolute; top: {mouseY + 10}px; left: {mouseX + 10}px"
+					>
+						CLICK HERE TO VIEW PREVIOUS ←
+					</h1>
+				{:else}
+					<h1
+						class="bg-black text-white text-xs p-1 opacity-40"
+						style="position: absolute; top: {mouseY + 10}px; left: {mouseX + 10}px"
+					>
+						NO PREVIOUS; CLICK RIGHT HALF TO VIEW NEXT
+					</h1>
+				{/if}
+			{/if}
+		{/if}
+		{#if history.length > 1 && mode === 'single'}
+			<h1
+				class="bg-black text-white text-xs p-1"
+				style="position: absolute; top: {mouseY + 10}px; left: {mouseX + 10}px"
+			>
+				CLICK ANYWHERE TO RETURN ↵
+			</h1>
+		{/if}
 	{/if}
 {/if}

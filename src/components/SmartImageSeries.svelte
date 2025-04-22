@@ -1,12 +1,16 @@
 <script lang="ts">
 	import type { Action } from "svelte/action";
 
-	const { additionalClasses = "", image, fullWidth, forceDelay = true } = $props<{
+	interface Props {
 		additionalClasses?: string;
 		image: string;
 		fullWidth?: number;
 		forceDelay?: boolean;
-	}>();
+		onmouseenter?: () => void;
+		onmouseleave?: () => void;
+	}
+
+	const { additionalClasses = "", image, fullWidth, forceDelay = true, onmouseenter, onmouseleave }: Props = $props();
 
 	const fullSrc = $derived(fullWidth ? image + `&width=${fullWidth}` : image);
 
@@ -38,7 +42,8 @@
     }
 </script>
 
-<div class={"overflow-clip relative " + additionalClasses}>
+<!-- svelte-ignore a11y_no_static_element_interactions -->
+<div class={"overflow-clip relative cursor-pointer hover:opacity-80 " + additionalClasses} {onmouseenter} {onmouseleave}>
 	<img src={image + "&width=200"} alt="" class={"w-full blur-sm" + (loaded ? " opacity-0" : "")} />
 	<div class="absolute inset-0">
 		<img use:onload src={imageSrc} alt="" class={"w-full" + (loaded ? "" : " opacity-0")} loading="lazy" />
