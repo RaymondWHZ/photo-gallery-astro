@@ -1,6 +1,5 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import SmartImageSeries from '@/components/SmartImageSeries.svelte';
 import { fetchCollections } from "@/utils/cms";
 import ThumbnailGrid from "@/components/ThumbnailGrid.astro";
 
@@ -14,9 +13,19 @@ const works = collections.flatMap(
 <Layout pageTitle="Collections" metaDescription="Browse Raymond's works in collections." preloadImageUrls={works.map((work) => work.image + "&width=200")}>
 	<div class="h-full w-full px-safe-screen flex flex-row items-stretch justify-center py-8 lg:py-20">
 		<div class="h-full grow max-w-content flex flex-col items-stretch justify-start">
-			<div class="mb-16 border-b border-gray-200" />
+			<div class="w-full sm:w-[500px] flex flex-row flex-wrap mb-2">
+				{collections.map((collection, index) => (
+					<a
+						href={`#${collections.length - index}`}
+						class="text-xs font-light text-gray-500 mb-1 mr-2 hover:underline"
+					>
+						#{collections.length - index} - {collection.title}
+					</a>
+				))}
+			</div>
+			<div class="border-b border-gray-200 relative" />
 			{collections.map((collection, index) => (
-				<span class="text-xs font-light text-gray-500 mb-1">#{collections.length - index}</span>
+				<span id={`${collections.length - index}`} class="text-xs font-light text-gray-500 mb-1 pt-16">#{collections.length - index}</span>
 				<div class="w-full mb-4 flex flex-row items-baseline gap-2">
 					<h1 class="text-3xl">{collection.title}</h1>
 					<span class="text-xs font-light text-gray-500">
@@ -37,7 +46,7 @@ const works = collections.flatMap(
 						<div class="mb-12" />
 					))}
 				</>
-				<div class="mt-16 mb-16 border-b border-gray-200" />
+				<div class="mt-16 border-b border-gray-200" />
 			))}
 		</div>
 	</div>
