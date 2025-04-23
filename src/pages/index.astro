@@ -1,10 +1,10 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import FeedView from '@/components/FeedView.svelte';
-import { fetchAllWorks } from "@/utils/cms";
+import { fetchAllVisibleWorks } from "@/utils/cms";
 import { shuffleArray } from "@/utils/utils";
 
-const works = await fetchAllWorks();
+const works = await fetchAllVisibleWorks();
 const feed = shuffleArray(works);
 ---
 

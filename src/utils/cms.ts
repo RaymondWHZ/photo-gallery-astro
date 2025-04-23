@@ -92,12 +92,12 @@ export type Collection = RawCollection & {
 	subCollections?: Collection[];
 }
 
-export async function fetchAllWorks(): Promise<Work[]> {
+export async function fetchAllVisibleWorks(): Promise<Work[]> {
 	return await client.query('works', {
 		filter: {
-			property: 'status',
-			select: {
-				does_not_equal: 'hidden'
+			property: 'collections',
+			relation: {
+				is_not_empty: true
 			}
 		},
 	})
