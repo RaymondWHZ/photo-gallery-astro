@@ -7,7 +7,7 @@ const { statusTitle, message } = Astro.props;
 ---
 
 <div class="h-full w-full px-safe-screen flex flex-row items-stretch justify-center py-8 lg:py-20">
-	<div class="h-full grow max-w-safe-screen flex flex-row items-stretch justify-start">
+	<div class="h-full grow max-w-content flex flex-row items-stretch justify-start">
 		<div class="h-full w-full sm:w-[500px] flex flex-col gap-4">
 			<h2 class="text-3xl mb-10">{statusTitle}</h2>
 			{message && (
