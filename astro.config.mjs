@@ -30,6 +30,7 @@ export default defineConfig({
 	adapter: vercel({
 		isr: {
 			expiration: 10,
+			exclude: ['/image/**'],
 		},
 	}),
 });

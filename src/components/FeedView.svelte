@@ -52,6 +52,7 @@
 	{#if index < feed.length - 1}
 		<link rel="preload" as="image" href={feed[index + 1].image} />
 	{/if}
+	<link rel="preload" as="image" href={`/image/${feed[index].id}`} />
 </svelte:head>
 <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 <div
