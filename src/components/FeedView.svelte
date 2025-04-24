@@ -65,7 +65,7 @@
 	onmouseup={() => {
 		if (Date.now() - mouseDownTime > 200) return;
 		if (mouseOnImage) {
-			window.open(feed[index].image, '_blank');
+			window.open(`/image/${feed[index].id}`, '_blank');
 		} else if (mode === 'feed') {
 			if (mouseInRightHalf && hasNext) index++;
 			if (!mouseInRightHalf && hasPrev) index--;

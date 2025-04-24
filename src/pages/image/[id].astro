@@ -1,0 +1,14 @@
+---
+import { fetchOriginalUrl } from "@/utils/cms";
+
+const { id } = Astro.params;
+const numberId = Number(id);
+if (isNaN(numberId)) {
+	return Astro.rewrite("/404");
+}
+const url = await fetchOriginalUrl(numberId);
+if (!url) {
+	return Astro.rewrite("/404");
+}
+return Astro.redirect(url);
+---

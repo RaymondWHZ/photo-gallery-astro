@@ -42,6 +42,10 @@ const dbSchemas = createDBSchemas({
 		image: files().singleNotionImageUrl(),
 		display: select().stringEnum('left', 'right', 'top', 'middle', undefined),
 	},
+	works__original: {
+		id: unique_id().number(),
+		image: files().singleUrl(),
+	},
 	collections: {
 		id: unique_id().number(),
 		title: title().plainText(),
@@ -152,6 +156,14 @@ export async function fetchCollections(): Promise<Collection[]> {
 
 export async function fetchSingleWork(id: number): Promise<Work | undefined> {
 	return await client.queryOneByUniqueId('works', id)
+}
+
+export async function fetchOriginalUrl(id: number): Promise<string | undefined> {
+	const work = await client.queryOneByUniqueId('works__original', id);
+	if (work) {
+		return work.image;
+	}
+	return undefined;
 }
 
 export type AboutInfo = {
