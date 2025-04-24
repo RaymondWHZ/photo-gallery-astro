@@ -1,12 +1,14 @@
 <script lang="ts">
     import type { Work } from "@/utils/cms";
 
-    const { work, statusDescription = "", wide = false, width } = $props<{
+    interface Props {
         work: Work;
         statusDescription?: string;
         wide?: boolean;
         width?: string;
-    }>();
+    }
+
+    const { work, statusDescription = "", wide = false, width }: Props = $props();
 </script>
 
 {#if statusDescription}

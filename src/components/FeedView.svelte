@@ -3,11 +3,13 @@
 	import type { Work } from '@/utils/cms';
 	import { onMount } from 'svelte';
 
-	const { statusDescription = "", feed, mode = "feed" } = $props<{
+	interface Props {
 		statusDescription?: string;
 		feed: Work[];
 		mode?: 'feed' | 'single';
-	}>();
+	}
+
+	const { statusDescription = "", feed, mode = "feed" }: Props = $props();
 
 	let index = $state(0);
 

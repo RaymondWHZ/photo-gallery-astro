@@ -1,10 +1,12 @@
 <script lang="ts">
     import type { Work } from "@/utils/cms";
 
-    const { work, width } = $props<{
+    interface Props {
         work: Work;
         width?: string;
-    }>();
+    }
+
+    const { work, width }: Props = $props();
 </script>
 
 <p class="text-xs font-light italic text-gray-500" style={width ? `width: ${width}px` : ''}>
