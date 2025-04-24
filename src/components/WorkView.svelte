@@ -20,6 +20,7 @@
 			<SmartImageSeries
 				additionalClasses="w-full"
 				image={work.image}
+				fullWidth={800}
 				onmouseenter={onmouseenterimage}
 				onmouseleave={onmouseleaveimage}
 			/>
@@ -35,6 +36,7 @@
 				<SmartImageSeries
 					additionalClasses="w-full"
 					image={work.image}
+					fullWidth={2000}
 					onmouseenter={onmouseenterimage}
 					onmouseleave={onmouseleaveimage}
 				/>
@@ -45,21 +47,22 @@
 			</div>
 		{/if}
 		{#if work.display === 'left' || work.display === undefined}
-			<div class="flex flex-row items-end w-full gap-8 xl:gap-16">
+			<div class="flex flex-row items-end w-full gap-8 xl:gap-12">
 				<SmartImageSeries
 					additionalClasses="flex-1"
 					image={work.image}
+					fullWidth={2000}
 					onmouseenter={onmouseenterimage}
 					onmouseleave={onmouseleaveimage}
 				/>
 				<div class="flex flex-col items-start gap-3">
-					<DescSection {work} {statusDescription} width="300" />
+					<DescSection {work} {statusDescription} width="250" />
 					<MetaSection {work} />
 				</div>
 			</div>
 		{/if}
 		{#if work.display === 'right' || work.display === 'middle'}
-			<div class={`flex flex-row items-end w-full gap-2 xl:gap-16 ${work.display === 'middle' ? 'xl:hidden' : ''}`}>
+			<div class={`flex flex-row items-end w-full gap-2 xl:gap-12 ${work.display === 'middle' ? 'xl:hidden' : ''}`}>
 				<div class="flex flex-col items-start gap-3">
 					<DescSection {work} {statusDescription} wide width="350" />
 					<MetaSection {work} />
@@ -67,24 +70,26 @@
 				<SmartImageSeries
 					additionalClasses="flex-1"
 					image={work.image}
+					fullWidth={2000}
 					onmouseenter={onmouseenterimage}
 					onmouseleave={onmouseleaveimage}
 				/>
 			</div>
 		{/if}
 		{#if work.display === 'middle'}
-			<div class="flex flex-row items-start w-full gap-8 2xl:gap-16 max-xl:hidden">
+			<div class="flex flex-row items-start w-full gap-12 max-xl:hidden">
 				<div class="flex flex-col items-start gap-3">
-					<DescSection {work} {statusDescription} width="280" />
+					<DescSection {work} {statusDescription} width="250" />
 				</div>
 				<SmartImageSeries
 					additionalClasses="flex-1"
 					image={work.image}
+					fullWidth={2000}
 					onmouseenter={onmouseenterimage}
 					onmouseleave={onmouseleaveimage}
 				/>
 				<div class="flex flex-col items-start justify-end gap-3 h-full">
-					<MetaSection {work} width="280" />
+					<MetaSection {work} width="250" />
 				</div>
 			</div>
 		{/if}
