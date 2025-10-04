@@ -6,7 +6,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "lint": "prettier --check . && oxlint",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@astrojs/svelte": "^7.0.4",
@@ -17,5 +19,10 @@
     "astro": "^5.2.5",
     "notion-cms-adaptor": "^2.0.0",
     "tailwindcss": "^4.0.3"
+  },
+  "devDependencies": {
+    "@prettier/plugin-oxc": "^0.0.4",
+    "oxlint": "^1.19.0",
+    "prettier": "3.6.2"
   }
 }
