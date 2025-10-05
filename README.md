@@ -38,7 +38,7 @@ You will need to create a Notion account and create a page with a database calle
 You will then also need to create a database called `db: about` to store about page texts, in the format of:
 
 | section (type: title) | text: (type: text)        |
-|-----------------------|---------------------------|
+| --------------------- | ------------------------- |
 | title                 | Title for your about page |
 | intro                 | Intro on your about page  |
 | quote_title           | Title for quote section   |

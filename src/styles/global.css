@@ -1,13 +1,13 @@
 /* Fonts */
 
-@import '@fontsource/lekton';
-@import '@fontsource/reenie-beanie';
+@import "@fontsource/lekton";
+@import "@fontsource/reenie-beanie";
 
 @font-face {
-    font-family: 'Avenir Next LT Pro';
+    font-family: "Avenir Next LT Pro";
     font-style: normal;
     font-weight: 400;
-    src: url('/fonts/Avenir Next LT Pro Regular.otf');
+    src: url("/fonts/Avenir Next LT Pro Regular.otf");
     font-display: swap;
 }
 
@@ -16,9 +16,9 @@
 @import "tailwindcss";
 
 @theme {
-    --font-lekton: 'Lekton', sans-serif;
-    --font-reenie-beanie: 'Reenie Beanie', cursive;
-    --font-avenir-next: 'Avenir Next LT Pro', sans-serif;
+    --font-lekton: "Lekton", sans-serif;
+    --font-reenie-beanie: "Reenie Beanie", cursive;
+    --font-avenir-next: "Avenir Next LT Pro", sans-serif;
 
     --spacing-content: 1000px;
 }
@@ -26,9 +26,9 @@
 /* Custom CSS */
 
 :root {
-	font-family: 'Avenir Next LT Pro', sans-serif;
+    font-family: "Avenir Next LT Pro", sans-serif;
 }
 
 .px-safe-screen {
-	@apply px-4 sm:px-10 lg:px-40;
+    @apply px-4 sm:px-10 lg:px-40;
 }
