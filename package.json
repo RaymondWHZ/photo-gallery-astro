@@ -1,28 +1,29 @@
 {
-    "name": "photo-gallery-astro",
-    "type": "module",
-    "version": "0.0.1",
-    "scripts": {
-        "dev": "astro dev",
-        "build": "astro build",
-        "preview": "astro preview",
-        "astro": "astro",
-        "lint": "prettier --check . && oxlint",
-        "format": "prettier --write ."
-    },
-    "dependencies": {
-        "@astrojs/svelte": "^7.0.4",
-        "@astrojs/vercel": "^8.0.5",
-        "@fontsource/lekton": "^5.0.8",
-        "@fontsource/reenie-beanie": "^5.0.18",
-        "@tailwindcss/vite": "^4.0.3",
-        "astro": "^5.2.5",
-        "notion-cms-adaptor": "^2.0.0",
-        "tailwindcss": "^4.0.3"
-    },
-    "devDependencies": {
-        "@prettier/plugin-oxc": "^0.0.4",
-        "oxlint": "^1.19.0",
-        "prettier": "3.6.2"
-    }
+  "name": "photo-gallery-astro",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "lint": "oxlint .",
+    "format": "prettier --write .",
+    "check": "prettier --check . && oxlint ."
+  },
+  "dependencies": {
+    "@astrojs/svelte": "^7.0.4",
+    "@astrojs/vercel": "^8.0.5",
+    "@fontsource/lekton": "^5.0.8",
+    "@fontsource/reenie-beanie": "^5.0.18",
+    "@tailwindcss/vite": "^4.0.3",
+    "astro": "^5.2.5",
+    "notion-cms-adaptor": "^2.0.0",
+    "tailwindcss": "^4.0.3"
+  },
+  "devDependencies": {
+    "@prettier/plugin-oxc": "^0.0.4",
+    "oxlint": "^1.19.0",
+    "prettier": "3.6.2"
+  }
 }

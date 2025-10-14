@@ -1,4 +1,4 @@
 {
-    "plugins": ["@prettier/plugin-oxc"],
-    "tabWidth": 4
+  "plugins": ["@prettier/plugin-oxc"],
+  "tabWidth": 2
 }
