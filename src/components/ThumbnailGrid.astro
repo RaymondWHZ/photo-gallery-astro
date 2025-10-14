@@ -1,32 +1,38 @@
 ---
-import type { WorkThumbnail } from '@/utils/cms'
-import SmartImageSeries from '@/components/SmartImageSeries.svelte';
+import type { WorkThumbnail } from "@/utils/cms";
+import SmartImageSeries from "@/components/SmartImageSeries.svelte";
 
 interface Props {
-	works: WorkThumbnail[]
+  works: WorkThumbnail[];
 }
 
 const { works } = Astro.props;
 ---
 
 <div class="w-full flex flex-row flex-wrap gap-x-8 gap-y-8">
-	{works.map((work) => (
-		<div class={
-			"w-full " +
-			(work.display === "middle" ? "min-[480px]:w-[200px]" :
-			work.display === "top" ? "min-[480px]:w-[400px]" :
-			"min-[480px]:w-[300px]")
-		}>
-			<div class="overflow-clip">
-				<a href={"/" + work.id} class="focus:blur-sm">
-					<SmartImageSeries
-						image={work.image}
-						fullWidth={800}
-						forceDelay={false}
-						client:load
-					/>
-				</a>
-			</div>
-		</div>
-	))}
+  {
+    works.map((work) => (
+      <div
+        class={
+          "w-full " +
+          (work.display === "middle"
+            ? "min-[480px]:w-[200px]"
+            : work.display === "top"
+              ? "min-[480px]:w-[400px]"
+              : "min-[480px]:w-[300px]")
+        }
+      >
+        <div class="overflow-clip">
+          <a href={"/" + work.id} class="focus:blur-sm">
+            <SmartImageSeries
+              image={work.image}
+              fullWidth={800}
+              forceDelay={false}
+              client:load
+            />
+          </a>
+        </div>
+      </div>
+    ))
+  }
 </div>

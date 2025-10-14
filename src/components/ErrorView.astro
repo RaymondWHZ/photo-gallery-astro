@@ -1,23 +1,23 @@
 ---
 interface Props {
-	statusTitle: string;
-	message?: string;
+  statusTitle: string;
+  message?: string;
 }
 const { statusTitle, message } = Astro.props;
 ---
 
-<div class="h-full w-full px-safe-screen flex flex-row items-stretch justify-center py-8 lg:py-20">
-	<div class="h-full grow max-w-content flex flex-row items-stretch justify-start">
-		<div class="h-full w-full sm:w-[500px] flex flex-col gap-4">
-			<h2 class="text-3xl mb-10">{statusTitle}</h2>
-			{message && (
-				<p class="text-xs font-light text-gray-500">
-					{message}
-				</p>
-			)}
-			<p class="text-xs font-light text-gray-500">
-				Please return to the <a class="underline" href="/">home page</a>.
-			</p>
-		</div>
-	</div>
+<div
+  class="h-full w-full px-safe-screen flex flex-row items-stretch justify-center py-8 lg:py-20"
+>
+  <div
+    class="h-full grow max-w-content flex flex-row items-stretch justify-start"
+  >
+    <div class="h-full w-full sm:w-[500px] flex flex-col gap-4">
+      <h2 class="text-3xl mb-10">{statusTitle}</h2>
+      {message && <p class="text-xs font-light text-gray-500">{message}</p>}
+      <p class="text-xs font-light text-gray-500">
+        Please return to the <a class="underline" href="/">home page</a>.
+      </p>
+    </div>
+  </div>
 </div>

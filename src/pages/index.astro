@@ -1,6 +1,6 @@
 ---
-import Layout from '@/layouts/Layout.astro';
-import FeedView from '@/components/FeedView.svelte';
+import Layout from "@/layouts/Layout.astro";
+import FeedView from "@/components/FeedView.svelte";
 import { fetchAllVisibleWorks } from "@/utils/cms";
 import { shuffleArray } from "@/utils/utils";
 
@@ -8,8 +8,15 @@ const works = await fetchAllVisibleWorks();
 const feed = shuffleArray(works);
 ---
 
-<Layout metaDescription="A simple site that displays Raymond's photography works." preloadImageUrls={feed.map((work) => work.image + "&width=200")}>
-	<div class="h-full w-screen">
-		<FeedView statusDescription="Randomly chosen to be displayed" {feed} client:load/>
-	</div>
+<Layout
+  metaDescription="A simple site that displays Raymond's photography works."
+  preloadImageUrls={feed.map((work) => work.image + "&width=200")}
+>
+  <div class="h-full w-screen">
+    <FeedView
+      statusDescription="Randomly chosen to be displayed"
+      {feed}
+      client:load
+    />
+  </div>
 </Layout>

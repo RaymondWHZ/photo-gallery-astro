@@ -5,19 +5,24 @@ import { fetchAboutInfo } from "@/utils/cms";
 const about = await fetchAboutInfo();
 ---
 
-<Layout pageTitle="About" metaDescription="Learn more about Raymond and his works.">
-	<div class="h-full w-full px-safe-screen flex flex-row items-stretch justify-center py-8 lg:py-20">
-		<div class="h-full grow max-w-content flex flex-row items-stretch justify-start">
-			<div class="h-full w-full sm:w-[500px] flex flex-col gap-4">
-				<h2 class="text-3xl mb-10">{about.title}</h2>
-				<p class="text-xs font-light text-gray-500">{about.description}</p>
-				<span class="text-3xl font-reenie-beanie">
-					Raymond Wu
-				</span>
-				<div class="h-20"></div>
-				<p class="text-xs font-light text-gray-500">{about.quote_title}</p>
-				<p class="text-xs font-lekton tracking-wide">{about.quote}</p>
-			</div>
-		</div>
-	</div>	
+<Layout
+  pageTitle="About"
+  metaDescription="Learn more about Raymond and his works."
+>
+  <div
+    class="h-full w-full px-safe-screen flex flex-row items-stretch justify-center py-8 lg:py-20"
+  >
+    <div
+      class="h-full grow max-w-content flex flex-row items-stretch justify-start"
+    >
+      <div class="h-full w-full sm:w-[500px] flex flex-col gap-4">
+        <h2 class="text-3xl mb-10">{about.title}</h2>
+        <p class="text-xs font-light text-gray-500">{about.description}</p>
+        <span class="text-3xl font-reenie-beanie"> Raymond Wu </span>
+        <div class="h-20"></div>
+        <p class="text-xs font-light text-gray-500">{about.quote_title}</p>
+        <p class="text-xs font-lekton tracking-wide">{about.quote}</p>
+      </div>
+    </div>
+  </div>
 </Layout>

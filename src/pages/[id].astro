@@ -1,21 +1,21 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import FeedView from '@/components/FeedView.svelte';
+import FeedView from "@/components/FeedView.svelte";
 import { fetchSingleWork } from "@/utils/cms";
 
 const { id } = Astro.params;
 const numberId = Number(id);
 if (isNaN(numberId)) {
-	return Astro.rewrite("/404");
+  return Astro.rewrite("/404");
 }
 const work = await fetchSingleWork(numberId);
 if (!work) {
-	return Astro.rewrite("/404");
+  return Astro.rewrite("/404");
 }
 ---
 
 <Layout pageTitle={work.title} metaDescription={work.description}>
-	<div class="h-full w-screen">
-		<FeedView statusDescription="" feed={[work]} mode="single" client:load />
-	</div>
+  <div class="h-full w-screen">
+    <FeedView statusDescription="" feed={[work]} mode="single" client:load />
+  </div>
 </Layout>

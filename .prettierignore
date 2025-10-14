@@ -1,3 +1,6 @@
 # Ignore artifacts:
 build
 coverage
+
+# [!] Added due to a bug with astro prettier plugin; remove when fixed
+src/pages/collections.astro
