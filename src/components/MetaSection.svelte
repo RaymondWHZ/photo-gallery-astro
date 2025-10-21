@@ -10,7 +10,7 @@
 </script>
 
 <p
-  class="text-xs font-light italic text-gray-500"
+  class="text-xs font-light text-gray-500 italic"
   style={width ? `width: ${width}px` : ""}
 >
   Shot on {work.date} <span class="text-nowrap">at {work.locationName}</span>
@@ -18,4 +18,4 @@
   with {work.deviceName}
   {#if work.lensName}+ {work.lensName}{/if}
 </p>
-<span class="text-3xl font-reenie-beanie"> Raymond Wu </span>
+<span class="font-reenie-beanie text-3xl"> Raymond Wu </span>

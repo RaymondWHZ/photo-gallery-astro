@@ -16,7 +16,7 @@
 {/if}
 
 {#if wide}
-  <div class="flex flex-row items-baseline gap-x-6 gap-y-3 flex-wrap">
+  <div class="flex flex-row flex-wrap items-baseline gap-x-6 gap-y-3">
     <h2 class="text-3xl">{work.title}</h2>
     <div class="flex flex-row gap-2">
       <h3>{work.shutter}</h3>

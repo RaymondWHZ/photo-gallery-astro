@@ -10,18 +10,18 @@ const about = await fetchAboutInfo();
   metaDescription="Learn more about Raymond and his works."
 >
   <div
-    class="h-full w-full px-safe-screen flex flex-row items-stretch justify-center py-8 lg:py-20"
+    class="px-safe-screen flex h-full w-full flex-row items-stretch justify-center py-8 lg:py-20"
   >
     <div
-      class="h-full grow max-w-content flex flex-row items-stretch justify-start"
+      class="max-w-content flex h-full grow flex-row items-stretch justify-start"
     >
-      <div class="h-full w-full sm:w-[500px] flex flex-col gap-4">
-        <h2 class="text-3xl mb-10">{about.title}</h2>
+      <div class="flex h-full w-full flex-col gap-4 sm:w-[500px]">
+        <h2 class="mb-10 text-3xl">{about.title}</h2>
         <p class="text-xs font-light text-gray-500">{about.description}</p>
-        <span class="text-3xl font-reenie-beanie"> Raymond Wu </span>
+        <span class="font-reenie-beanie text-3xl"> Raymond Wu </span>
         <div class="h-20"></div>
         <p class="text-xs font-light text-gray-500">{about.quote_title}</p>
-        <p class="text-xs font-lekton tracking-wide">{about.quote}</p>
+        <p class="font-lekton text-xs tracking-wide">{about.quote}</p>
       </div>
     </div>
   </div>

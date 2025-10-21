@@ -51,7 +51,7 @@
 
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <div
-  class={"overflow-clip relative cursor-pointer " + additionalClasses}
+  class={"relative cursor-pointer overflow-clip " + additionalClasses}
   {onmouseenter}
   {onmouseleave}
 >

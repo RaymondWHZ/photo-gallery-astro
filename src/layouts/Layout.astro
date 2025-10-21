@@ -56,9 +56,9 @@ const { pageTitle, preloadImageUrls, metaDescription } = Astro.props;
     <!-- Astro Client Router -->
     <ClientRouter />
   </head>
-  <body class="h-[100vh] flex flex-col justify-stretch items-stretch">
+  <body class="flex h-[100vh] flex-col items-stretch justify-stretch">
     <nav class="px-safe-screen flex flex-row justify-center">
-      <div class="w-full max-w-content">
+      <div class="max-w-content w-full">
         <Header />
       </div>
     </nav>
@@ -68,9 +68,9 @@ const { pageTitle, preloadImageUrls, metaDescription } = Astro.props;
     </main>
 
     <footer
-      class="px-safe-screen sm:px-10 lg:px-40 flex flex-row justify-center"
+      class="px-safe-screen flex flex-row justify-center sm:px-10 lg:px-40"
     >
-      <div class="w-full max-w-content">
+      <div class="max-w-content w-full">
         <Footer />
       </div>
     </footer>

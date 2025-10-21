@@ -56,7 +56,7 @@
 </svelte:head>
 <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 <div
-  class="h-full w-full flex flex-col items-center px-safe-screen"
+  class="px-safe-screen flex h-full w-full flex-col items-center"
   role="application"
   onfocus={() => {}}
   onmouseover={() => (mouseIn = true)}
@@ -76,38 +76,38 @@
   }}
 >
   {#if touchScreen}
-    <div class="w-full flex flex-col items-start gap-1 max-w-content mb-8">
-      <h1 class="bg-black text-white text-xs p-1">
+    <div class="max-w-content mb-8 flex w-full flex-col items-start gap-1">
+      <h1 class="bg-black p-1 text-xs text-white">
         CLICK IMAGE TO VIEW LARGE「」
       </h1>
       {#if mode === "feed"}
         {#if hasNext}
-          <h1 class="bg-black text-white text-xs p-1">
+          <h1 class="bg-black p-1 text-xs text-white">
             CLICK RIGHT HALF TO VIEW NEXT →
           </h1>
         {:else}
-          <h1 class="bg-black text-white text-xs p-1 opacity-40">
+          <h1 class="bg-black p-1 text-xs text-white opacity-40">
             YOU'VE REACHED THE END!
           </h1>
         {/if}
         {#if hasPrev}
-          <h1 class="bg-black text-white text-xs p-1">
+          <h1 class="bg-black p-1 text-xs text-white">
             CLICK LEFT HALF TO VIEW PREVIOUS ←
           </h1>
         {:else}
-          <h1 class="bg-black text-white text-xs p-1 opacity-40">
+          <h1 class="bg-black p-1 text-xs text-white opacity-40">
             NO PREVIOUS
           </h1>
         {/if}
       {/if}
       {#if history.length > 1 && mode === "single"}
-        <h1 class="bg-black text-white text-xs p-1">
+        <h1 class="bg-black p-1 text-xs text-white">
           CLICK ANYWHERE ELSE TO RETURN ↵
         </h1>
       {/if}
     </div>
   {/if}
-  <div class="h-full w-full max-w-content bg-white">
+  <div class="max-w-content h-full w-full bg-white">
     <WorkView
       {statusDescription}
       work={feed[index]}
@@ -119,7 +119,7 @@
 {#if !touchScreen && mouseIn}
   {#if mouseOnImage}
     <h1
-      class="bg-black text-white text-xs p-1"
+      class="bg-black p-1 text-xs text-white"
       style="position: absolute; top: {mouseY + 10}px; left: {mouseX + 10}px"
     >
       CLICK TO VIEW LARGE IMAGE「」
@@ -129,7 +129,7 @@
       {#if mouseInRightHalf}
         {#if hasNext}
           <h1
-            class="bg-black text-white text-xs p-1"
+            class="bg-black p-1 text-xs text-white"
             style="position: absolute; top: {mouseY + 10}px; left: {mouseX +
               10}px"
           >
@@ -137,7 +137,7 @@
           </h1>
         {:else}
           <h1
-            class="bg-black text-white text-xs p-1 opacity-40"
+            class="bg-black p-1 text-xs text-white opacity-40"
             style="position: absolute; top: {mouseY + 10}px; left: {mouseX +
               10}px"
           >
@@ -146,7 +146,7 @@
         {/if}
       {:else if hasPrev}
         <h1
-          class="bg-black text-white text-xs p-1"
+          class="bg-black p-1 text-xs text-white"
           style="position: absolute; top: {mouseY + 10}px; left: {mouseX +
             10}px"
         >
@@ -154,7 +154,7 @@
         </h1>
       {:else}
         <h1
-          class="bg-black text-white text-xs p-1 opacity-40"
+          class="bg-black p-1 text-xs text-white opacity-40"
           style="position: absolute; top: {mouseY + 10}px; left: {mouseX +
             10}px"
         >
@@ -164,7 +164,7 @@
     {/if}
     {#if history.length > 1 && mode === "single"}
       <h1
-        class="bg-black text-white text-xs p-1"
+        class="bg-black p-1 text-xs text-white"
         style="position: absolute; top: {mouseY + 10}px; left: {mouseX + 10}px"
       >
         CLICK HERE TO RETURN ↵
