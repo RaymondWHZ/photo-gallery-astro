@@ -85,7 +85,9 @@ const dbSchemas = createDBSchemas({
 
 const client = createNotionDBClient({
   notionToken: NOTION_TOKEN,
-  dbPageId: NOTION_CMS_PAGE_ID,
+  autoDetectDataSources: {
+    pageId: NOTION_CMS_PAGE_ID,
+  },
   dbSchemas,
 });
 
