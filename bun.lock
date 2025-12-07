@@ -11,7 +11,7 @@
         "@fontsource/reenie-beanie": "^5.0.18",
         "@tailwindcss/vite": "^4.0.3",
         "astro": "^5.2.5",
-        "notion-cms-adaptor": "3.0.0",
+        "notion-cms-adaptor": "^3.0.2",
         "tailwindcss": "^4.0.3",
       },
       "devDependencies": {
@@ -819,7 +819,7 @@
 
     "normalize-path": ["normalize-path@3.0.0", "", {}, "sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA=="],
 
-    "notion-cms-adaptor": ["notion-cms-adaptor@3.0.0", "", { "dependencies": { "@notionhq/client": "5.4.0" } }, "sha512-Aiz3EAP8RskZLQzALAlwMo0Tk7+8MHfxCmjh4oDBP6h03oeqaHefw+uF5a3y/7DneAMmbS6lfLoYhwFwk/5NYg=="],
+    "notion-cms-adaptor": ["notion-cms-adaptor@3.0.2", "", { "dependencies": { "@notionhq/client": "5.4.0" } }, "sha512-mv+AKSTLRRxGbz/0hS2GqStl/grjJYlL8kJrk6DawfPV88cmnEHVbyME91KCC6wxT97Xzv7XTE+WyT8g3YcKmQ=="],
 
     "ofetch": ["ofetch@1.4.1", "", { "dependencies": { "destr": "^2.0.3", "node-fetch-native": "^1.6.4", "ufo": "^1.5.4" } }, "sha512-QZj2DfGplQAr2oj9KzceK9Hwz6Whxazmn85yYeVuS3u9XTMOGMRx0kO95MQ+vLsj/S/NwBDMMLU5hpxvI6Tklw=="],
 

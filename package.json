@@ -19,7 +19,7 @@
     "@fontsource/reenie-beanie": "^5.0.18",
     "@tailwindcss/vite": "^4.0.3",
     "astro": "^5.2.5",
-    "notion-cms-adaptor": "3.0.0",
+    "notion-cms-adaptor": "^3.0.2",
     "tailwindcss": "^4.0.3"
   },
   "devDependencies": {
