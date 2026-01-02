@@ -42,9 +42,13 @@
       });
     }
     if (forceDelay) {
-      setTimeout(() => {
+      if (el.complete) {
+        setTimeout(() => {
+          startLoading = true;
+        }, 50);
+      } else {
         startLoading = true;
-      }, 50);
+      }
     }
   };
 </script>
@@ -55,17 +59,14 @@
   {onmouseenter}
   {onmouseleave}
 >
-  <img
-    src={image + "&width=200"}
-    alt=""
-    class={"w-full blur-sm" + (loaded ? " opacity-0" : "")}
-  />
+  <img src={image + "&width=200"} alt="" class={"w-full opacity-0"} />
   <div class="absolute inset-0">
     <img
       use:onload
       src={imageSrc}
       alt=""
-      class={"w-full" + (loaded ? "" : " opacity-0")}
+      class={"w-full transition-opacity ease-in-out" +
+        (loaded ? "" : " opacity-0")}
       loading="lazy"
     />
   </div>
