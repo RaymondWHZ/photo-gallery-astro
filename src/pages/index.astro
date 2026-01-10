@@ -12,7 +12,7 @@ const feed = shuffleArray(works);
   metaDescription="A simple site that displays Raymond's photography works."
   preloadImageUrls={feed.map((work) => work.image + "&width=200")}
 >
-  <div class="max-h-[100vh-100px] w-screen">
+  <div class="h-full w-screen">
     <FeedView
       statusDescription="Randomly chosen to be displayed"
       {feed}
