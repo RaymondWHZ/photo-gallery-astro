@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { Action } from "svelte/action";
+  import Tag from "./Tag.svelte";
 
   interface Props {
     additionalClasses?: string;
@@ -51,6 +52,20 @@
       }
     }
   };
+
+  let showLoading = $state(false);
+  $effect(() => {
+    if (!loaded) {
+      const timeout = setTimeout(() => {
+        showLoading = true;
+      }, 500);
+      return () => {
+        clearTimeout(timeout);
+      };
+    } else {
+      showLoading = false;
+    }
+  });
 </script>
 
 <!-- svelte-ignore a11y_no_static_element_interactions -->
@@ -59,6 +74,11 @@
   {onmouseenter}
   {onmouseleave}
 >
+  {#if showLoading}
+    <div class="absolute inset-0 flex items-center justify-center">
+      <Tag>IMAGE LOADING ...</Tag>
+    </div>
+  {/if}
   <img src={image + "&width=200"} alt="" class={"w-full opacity-0"} />
   <div class="absolute inset-0">
     <img
