@@ -56,14 +56,14 @@ const { pageTitle, preloadImageUrls, metaDescription } = Astro.props;
     <!-- Astro Client Router -->
     <ClientRouter />
   </head>
-  <body class="flex h-[100vh] flex-col items-stretch justify-stretch">
+  <body class="flex h-screen flex-col items-stretch justify-stretch">
     <nav class="px-safe-screen flex flex-row justify-center">
       <div class="max-w-content w-full">
         <Header />
       </div>
     </nav>
 
-    <main class="grow">
+    <main class="flex-1">
       <slot />
     </main>
 

@@ -41,7 +41,6 @@
         <SmartImageSeries
           additionalClasses="w-full"
           image={work.image}
-          fullWidth={2000}
           onmouseenter={onmouseenterimage}
           onmouseleave={onmouseleaveimage}
         />
@@ -52,11 +51,12 @@
       </div>
     {/if}
     {#if work.display === "left" || work.display === undefined}
-      <div class="flex w-full flex-row items-end gap-8 xl:gap-12">
+      <div
+        class="flex w-full flex-row items-end justify-between gap-8 lg:gap-10 2xl:gap-20"
+      >
         <SmartImageSeries
-          additionalClasses="flex-1"
+          additionalClasses="flex-1 max-w-[110vh]"
           image={work.image}
-          fullWidth={2000}
           onmouseenter={onmouseenterimage}
           onmouseleave={onmouseleaveimage}
         />
@@ -68,30 +68,30 @@
     {/if}
     {#if work.display === "right" || work.display === "middle"}
       <div
-        class={`flex w-full flex-row items-end gap-2 xl:gap-12 ${work.display === "middle" ? "xl:hidden" : ""}`}
+        class={`flex w-full flex-row items-end justify-between gap-8 lg:gap-12 xl:gap-24 ${work.display === "middle" ? "lg:hidden" : ""}`}
       >
         <div class="flex flex-col items-start gap-3">
           <DescSection {work} {statusDescription} wide width="350" />
           <MetaSection {work} />
         </div>
         <SmartImageSeries
-          additionalClasses="flex-1"
+          additionalClasses="flex-1 max-w-[80vh]"
           image={work.image}
-          fullWidth={2000}
           onmouseenter={onmouseenterimage}
           onmouseleave={onmouseleaveimage}
         />
       </div>
     {/if}
     {#if work.display === "middle"}
-      <div class="flex w-full flex-row items-start gap-12 max-xl:hidden">
+      <div
+        class="flex w-full flex-row items-start justify-between gap-12 max-lg:hidden"
+      >
         <div class="flex flex-col items-start gap-3">
           <DescSection {work} {statusDescription} width="250" />
         </div>
         <SmartImageSeries
-          additionalClasses="flex-1"
+          additionalClasses="flex-1 max-w-[42vh]"
           image={work.image}
-          fullWidth={2000}
           onmouseenter={onmouseenterimage}
           onmouseleave={onmouseleaveimage}
         />

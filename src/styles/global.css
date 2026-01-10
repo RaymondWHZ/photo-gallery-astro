@@ -20,7 +20,7 @@
   --font-reenie-beanie: "Reenie Beanie", cursive;
   --font-avenir-next: "Avenir Next LT Pro", sans-serif;
 
-  --spacing-content: 1000px;
+  --spacing-content: 1536px;
 }
 
 /* Custom CSS */
@@ -30,5 +30,5 @@
 }
 
 .px-safe-screen {
-  @apply px-4 sm:px-10 lg:px-40;
+  @apply px-4 sm:px-10;
 }
