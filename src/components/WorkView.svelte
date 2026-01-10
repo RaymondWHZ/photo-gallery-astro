@@ -37,7 +37,7 @@
   </div>
   <div class="flex h-full flex-col items-center justify-center max-md:hidden">
     {#if work.display === "top"}
-      <div class="flex w-full flex-col items-start gap-10">
+      <div class="flex w-full flex-col items-start gap-10 2xl:gap-12">
         <SmartImageSeries
           additionalClasses="w-full"
           image={work.image}
@@ -57,6 +57,7 @@
         <SmartImageSeries
           additionalClasses="flex-1 max-w-[110vh]"
           image={work.image}
+          fullWidth={2000}
           onmouseenter={onmouseenterimage}
           onmouseleave={onmouseleaveimage}
         />
@@ -77,6 +78,7 @@
         <SmartImageSeries
           additionalClasses="flex-1 max-w-[80vh]"
           image={work.image}
+          fullWidth={2000}
           onmouseenter={onmouseenterimage}
           onmouseleave={onmouseleaveimage}
         />
@@ -92,6 +94,7 @@
         <SmartImageSeries
           additionalClasses="flex-1 max-w-[42vh]"
           image={work.image}
+          fullWidth={2000}
           onmouseenter={onmouseenterimage}
           onmouseleave={onmouseleaveimage}
         />
