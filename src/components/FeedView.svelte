@@ -1,5 +1,6 @@
 <script lang="ts">
   import WorkView from "./WorkView.svelte";
+  import Tag from "./Tag.svelte";
   import type { Work } from "@/utils/cms";
   import { onMount } from "svelte";
 
@@ -77,33 +78,21 @@
 >
   {#if touchScreen}
     <div class="max-w-content mb-8 flex w-full flex-col items-start gap-1">
-      <h1 class="bg-black p-1 text-xs text-white">
-        CLICK IMAGE TO VIEW LARGE「」
-      </h1>
+      <Tag>CLICK IMAGE TO VIEW LARGE「」</Tag>
       {#if mode === "feed"}
         {#if hasNext}
-          <h1 class="bg-black p-1 text-xs text-white">
-            CLICK RIGHT HALF TO VIEW NEXT →
-          </h1>
+          <Tag>CLICK RIGHT HALF TO VIEW NEXT →</Tag>
         {:else}
-          <h1 class="bg-black p-1 text-xs text-white opacity-40">
-            YOU'VE REACHED THE END!
-          </h1>
+          <Tag disabled>YOU'VE REACHED THE END!</Tag>
         {/if}
         {#if hasPrev}
-          <h1 class="bg-black p-1 text-xs text-white">
-            CLICK LEFT HALF TO VIEW PREVIOUS ←
-          </h1>
+          <Tag>CLICK LEFT HALF TO VIEW PREVIOUS ←</Tag>
         {:else}
-          <h1 class="bg-black p-1 text-xs text-white opacity-40">
-            NO PREVIOUS
-          </h1>
+          <Tag disabled>NO PREVIOUS</Tag>
         {/if}
       {/if}
       {#if history.length > 1 && mode === "single"}
-        <h1 class="bg-black p-1 text-xs text-white">
-          CLICK ANYWHERE ELSE TO RETURN ↵
-        </h1>
+        <Tag>CLICK ANYWHERE ELSE TO RETURN ↵</Tag>
       {/if}
     </div>
   {/if}
@@ -118,57 +107,25 @@
 </div>
 {#if !touchScreen && mouseIn}
   {#if mouseOnImage}
-    <h1
-      class="bg-black p-1 text-xs text-white"
-      style="position: absolute; top: {mouseY + 10}px; left: {mouseX + 10}px"
-    >
-      CLICK TO VIEW LARGE IMAGE「」
-    </h1>
+    <Tag x={mouseX} y={mouseY}>CLICK TO VIEW LARGE IMAGE「」</Tag>
   {:else}
     {#if mode === "feed"}
       {#if mouseInRightHalf}
         {#if hasNext}
-          <h1
-            class="bg-black p-1 text-xs text-white"
-            style="position: absolute; top: {mouseY + 10}px; left: {mouseX +
-              10}px"
-          >
-            CLICK HERE TO VIEW NEXT →
-          </h1>
+          <Tag x={mouseX} y={mouseY}>CLICK HERE TO VIEW NEXT →</Tag>
         {:else}
-          <h1
-            class="bg-black p-1 text-xs text-white opacity-40"
-            style="position: absolute; top: {mouseY + 10}px; left: {mouseX +
-              10}px"
-          >
-            YOU'VE REACHED THE END!
-          </h1>
+          <Tag disabled x={mouseX} y={mouseY}>YOU'VE REACHED THE END!</Tag>
         {/if}
       {:else if hasPrev}
-        <h1
-          class="bg-black p-1 text-xs text-white"
-          style="position: absolute; top: {mouseY + 10}px; left: {mouseX +
-            10}px"
-        >
-          CLICK HERE TO VIEW PREVIOUS ←
-        </h1>
+        <Tag x={mouseX} y={mouseY}>CLICK HERE TO VIEW PREVIOUS ←</Tag>
       {:else}
-        <h1
-          class="bg-black p-1 text-xs text-white opacity-40"
-          style="position: absolute; top: {mouseY + 10}px; left: {mouseX +
-            10}px"
+        <Tag disabled x={mouseX} y={mouseY}
+          >NO PREVIOUS; CLICK RIGHT HALF TO VIEW NEXT</Tag
         >
-          NO PREVIOUS; CLICK RIGHT HALF TO VIEW NEXT
-        </h1>
       {/if}
     {/if}
     {#if history.length > 1 && mode === "single"}
-      <h1
-        class="bg-black p-1 text-xs text-white"
-        style="position: absolute; top: {mouseY + 10}px; left: {mouseX + 10}px"
-      >
-        CLICK HERE TO RETURN ↵
-      </h1>
+      <Tag x={mouseX} y={mouseY}>CLICK HERE TO RETURN ↵</Tag>
     {/if}
   {/if}
 {/if}
