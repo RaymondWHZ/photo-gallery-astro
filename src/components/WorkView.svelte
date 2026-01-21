@@ -21,7 +21,7 @@
 
 {#key work.id}
   <div class="flex h-full flex-col items-center justify-center md:hidden">
-    <div class="flex w-full flex-col items-start gap-10">
+    <div class="flex w-full flex-col items-start gap-8">
       <SmartImageSeries
         additionalClasses="w-full"
         image={work.image}
@@ -37,10 +37,11 @@
   </div>
   <div class="flex h-full flex-col items-center justify-center max-md:hidden">
     {#if work.display === "top"}
-      <div class="flex w-full flex-col items-start gap-10 2xl:gap-12">
+      <div class="flex w-full flex-col items-start gap-8">
         <SmartImageSeries
           additionalClasses="w-full"
           image={work.image}
+          fullWidth={2000}
           onmouseenter={onmouseenterimage}
           onmouseleave={onmouseleaveimage}
         />
@@ -52,7 +53,7 @@
     {/if}
     {#if work.display === "left" || work.display === undefined}
       <div
-        class="flex w-full flex-row items-end justify-between gap-8 lg:gap-10 2xl:gap-20"
+        class="flex w-full flex-row items-end justify-between gap-8 lg:gap-10"
       >
         <SmartImageSeries
           additionalClasses="flex-1 max-w-[110vh]"
@@ -69,7 +70,7 @@
     {/if}
     {#if work.display === "right" || work.display === "middle"}
       <div
-        class={`flex w-full flex-row items-end justify-between gap-8 lg:gap-12 xl:gap-24 ${work.display === "middle" ? "lg:hidden" : ""}`}
+        class={`flex w-full flex-row items-end justify-between gap-8 lg:gap-10 ${work.display === "middle" ? "lg:hidden" : ""}`}
       >
         <div class="flex flex-col items-start gap-3">
           <DescSection {work} {statusDescription} wide width="350" />
@@ -86,7 +87,7 @@
     {/if}
     {#if work.display === "middle"}
       <div
-        class="flex w-full flex-row items-start justify-between gap-12 max-lg:hidden"
+        class="flex w-full flex-row items-start justify-between gap-10 max-lg:hidden"
       >
         <div class="flex flex-col items-start gap-3">
           <DescSection {work} {statusDescription} width="250" />
