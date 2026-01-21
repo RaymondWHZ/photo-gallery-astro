@@ -18,8 +18,7 @@
 </script>
 
 <h1
-  class="bg-black p-1 text-xs text-white"
-  class:opacity-40={disabled}
+  class={`bg-black p-1 text-xs text-white ${disabled ? "opacity-40" : ""}`}
   style={positionStyle}
 >
   {@render children()}
