@@ -5,6 +5,9 @@ dist/
 .astro/
 .vercel/
 
+# svelte-check --tsgo transpilation cache
+.svelte-check/
+
 # dependencies
 node_modules/
 

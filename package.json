@@ -7,29 +7,36 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "lint": "oxlint .",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "check": "oxlint . && astro check && svelte-check && prettier --check ."
+    "check:lint": "oxlint . --type-aware",
+    "check:lint:fix": "oxlint . --type-aware --fix",
+    "check:astro": "astro check",
+    "check:svelte": "svelte-check --tsgo",
+    "check:format": "prettier --check .",
+    "format": "prettier --write . --list-different",
+    "check": "bun run --parallel check:lint check:astro check:svelte check:format",
+    "check:fix": "bun run check:lint:fix && bun run check:astro check:svelte && bun run format"
   },
   "dependencies": {
-    "@astrojs/svelte": "^7.0.4",
-    "@astrojs/vercel": "^8.0.5",
+    "@astrojs/svelte": "^8.1.2",
+    "@astrojs/vercel": "^10.0.8",
     "@fontsource/lekton": "^5.0.8",
     "@fontsource/reenie-beanie": "^5.0.18",
-    "@tailwindcss/vite": "^4.0.3",
-    "astro": "^5.2.5",
-    "notion-cms-adaptor": "^3.0.2",
-    "tailwindcss": "^4.0.3"
+    "@tailwindcss/vite": "^4.3.1",
+    "astro": "^6.4.8",
+    "notion-cms-adaptor": "^3.1.0",
+    "svelte": "^5.56.3",
+    "tailwindcss": "^4.3.1"
   },
   "devDependencies": {
-    "@astrojs/check": "0.9.5",
-    "@prettier/plugin-oxc": "0.0.4",
-    "oxlint": "1.38.0",
-    "prettier": "3.6.2",
+    "@astrojs/check": "0.9.9",
+    "@prettier/plugin-oxc": "0.1.4",
+    "@typescript/native-preview": "7.0.0-dev.20260617.2",
+    "oxlint": "1.70.0",
+    "oxlint-tsgolint": "^0.23.0",
+    "prettier": "3.8.4",
     "prettier-plugin-astro": "0.14.1",
-    "prettier-plugin-svelte": "3.4.0",
-    "prettier-plugin-tailwindcss": "0.7.1",
-    "svelte-check": "4.3.3"
+    "prettier-plugin-svelte": "4.1.1",
+    "prettier-plugin-tailwindcss": "0.8.0",
+    "svelte-check": "4.6.0"
   }
 }

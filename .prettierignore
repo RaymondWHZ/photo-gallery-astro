@@ -1,3 +1,6 @@
 # Ignore artifacts:
 build
 coverage
+
+# svelte-check --tsgo transpilation cache
+.svelte-check
