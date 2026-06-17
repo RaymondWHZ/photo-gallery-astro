@@ -27,3 +27,4 @@ pnpm-debug.log*
 # editor setting folder
 .idea/
 .vscode/
+.vercel
