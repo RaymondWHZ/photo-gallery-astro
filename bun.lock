@@ -11,7 +11,7 @@
         "@fontsource/reenie-beanie": "^5.0.18",
         "@tailwindcss/vite": "^4.3.1",
         "astro": "^7.0.0",
-        "notion-cms-adaptor": "^3.1.0",
+        "notion-cms-adaptor": "^3.1.1",
         "svelte": "^5.56.3",
         "tailwindcss": "^4.3.1",
       },
@@ -862,7 +862,7 @@
 
     "normalize-path": ["normalize-path@3.0.0", "", {}, "sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA=="],
 
-    "notion-cms-adaptor": ["notion-cms-adaptor@3.1.0", "", { "dependencies": { "@notionhq/client": "5.4.0" } }, "sha512-DnoPK3aXUOkX0WrciQ6zszTqbOOC8pzAWK2DuGWxU2lXRy15AvamZ1Mc74EfRgIHcpbkhfeH31gw5JTT9uokJg=="],
+    "notion-cms-adaptor": ["notion-cms-adaptor@3.1.1", "", { "dependencies": { "@notionhq/client": "5.4.0" } }, "sha512-vJtYE788i3ivO/f9SusJuoZLtLCAZH4g+YRp9kCeY6wle5MOqG89Sq/SCy1Y2ZptdOZi7mbi9SA5XrJxl6Vv3w=="],
 
     "npm-run-path": ["npm-run-path@4.0.1", "", { "dependencies": { "path-key": "^3.0.0" } }, "sha512-S48WzZW777zhNIrn7gxOlISNAqi9ZC/uQFnRdbeIHhZhCA6UqpkOT8T1G7BvfdgP4Er8gF4sUbaS0i7QvIfCWw=="],
 
